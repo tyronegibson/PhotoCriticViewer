@@ -1,0 +1,60 @@
+{
+  "_comment": "Candidate models for compare_models.py. Same prompt (evaluation_v4) and schema for all. batch_size is per-model because memory profiles differ (8 is what production uses for the 30B baseline). Entries with \"default\": false only run when named explicitly via --models. All entries use the fixed single chat-template batch path (PHOTOCRITIC_LEGACY_BATCH_TEMPLATE=off) unless \"legacy_template\": true, which reproduces production's current double-templated batch path exactly.",
+  "models": [
+    {
+      "slug": "qwen3vl-30b-legacy",
+      "repo": "mlx-community/Qwen3-VL-30B-A3B-Instruct-8bit",
+      "thinking": false,
+      "batch_size": 8,
+      "default": true,
+      "note": "EXACTLY today's production path (double-templated batch prompt)",
+      "legacy_template": true
+    },
+    {
+      "slug": "qwen3vl-30b",
+      "repo": "mlx-community/Qwen3-VL-30B-A3B-Instruct-8bit",
+      "thinking": false,
+      "batch_size": 8,
+      "default": true,
+      "note": "current production model, fixed prompt templating"
+    },
+    {
+      "slug": "qwen36-35b",
+      "repo": "mlx-community/Qwen3.6-35B-A3B-8bit",
+      "thinking": false,
+      "batch_size": 8,
+      "default": true
+    },
+    {
+      "slug": "qwen36-35b-think",
+      "repo": "mlx-community/Qwen3.6-35B-A3B-8bit",
+      "thinking": true,
+      "batch_size": 4,
+      "default": false,
+      "note": "thinking mode; several times slower"
+    },
+    {
+      "slug": "gemma4-31b",
+      "repo": "mlx-community/gemma-4-31b-it-8bit",
+      "thinking": false,
+      "batch_size": 4,
+      "default": true,
+      "note": "dense 31B: smaller batch for activation headroom"
+    },
+    {
+      "slug": "gemma4-31b-think",
+      "repo": "mlx-community/gemma-4-31b-it-8bit",
+      "thinking": true,
+      "batch_size": 2,
+      "default": false
+    },
+    {
+      "slug": "lfm3-vl-2b",
+      "repo": "LiquidAI/LFM3-VL-2B-MLX-8bit",
+      "thinking": false,
+      "batch_size": 16,
+      "default": true,
+      "note": "candidate fast pre-filter"
+    }
+  ]
+}

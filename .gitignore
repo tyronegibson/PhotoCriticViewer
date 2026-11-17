@@ -1,0 +1,13 @@
+.venv/
+__pycache__/
+*.pyc
+.DS_Store
+
+# Xcode (PhotoCriticViewer) — project.yml is kept, generated .xcodeproj is committed
+*.xcworkspace/xcuserdata/
+*.xcodeproj/xcuserdata/
+*.xcodeproj/project.xcworkspace/
+xcuserdata/
+DerivedData/
+*.moved-aside
+.venv-eval/

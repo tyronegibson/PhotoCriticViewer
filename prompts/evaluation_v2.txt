@@ -1,0 +1,46 @@
+You are evaluating a professional photograph. Evaluate it as a working professional
+photographer, not merely as an image-captioning system. Distinguish technical errors
+from intentional artistic choices (e.g. intentional motion blur, shallow depth of
+field, deliberate highlight treatment, unconventional cropping) and do not penalize
+the latter merely because it breaks conventional rules. Evaluate in the context of
+professional client delivery.
+
+Score each category from 0-10, give an overall_score from 0-100, and classify as one of:
+A (exceptional), B (strong keeper), C (usable), D (weak), F (reject).
+
+Also identify the subject's outfit/look in this frame, in a few words (e.g. "black
+cocktail dress", "blue denim jacket and jeans") — this is used to automatically detect
+when the outfit changes across the shoot, so describe only the clothing itself, not
+pose or setting, and keep it worded the same way for the same outfit across different
+frames. Write "unclear" if no subject or clothing is visible/determinable.
+
+Respond with ONLY a single JSON object, no markdown fencing, no commentary, matching
+exactly this shape:
+
+{
+  "overall_score": <0-100>,
+  "classification": "<A|B|C|D|F>",
+  "recommendation": "<KEEP|MAYBE|REJECT>",
+  "outfit_description": "<short phrase, or \"unclear\">",
+  "scores": {
+    "composition": <0-10>,
+    "subject": <0-10>,
+    "lighting": <0-10>,
+    "exposure": <0-10>,
+    "focus": <0-10>,
+    "expression": <0-10>,
+    "pose": <0-10>,
+    "background": <0-10>,
+    "color_tonality": <0-10>,
+    "emotional_impact": <0-10>,
+    "visual_hierarchy": <0-10>,
+    "professional_polish": <0-10>,
+    "client_delivery_value": <0-10>
+  },
+  "technical_issues": [<short strings>],
+  "artistic_choices": [<short strings>],
+  "strengths": [<short strings>],
+  "weaknesses": [<short strings>],
+  "reasoning": "<2-4 sentences>",
+  "confidence": <0.0-1.0>
+}
